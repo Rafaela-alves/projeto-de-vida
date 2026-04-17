@@ -4,25 +4,138 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rafaela</title>
+    <title>Rafaela - História</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="icon.png">
+    <style>
+        /* Estilos adicionais para o tema História */
+        body {
+            background: linear-gradient(135deg, #2c1810 0%, #1a0f0a 100%);
+            font-family: 'Georgia', 'Times New Roman', serif;
+        }
+
+        .titulo-principal {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+        }
+
+        .titulo-principal span {
+            background: linear-gradient(135deg, #d4a574 0%, #8b6914 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-size: 3rem;
+        }
+
+        .botao {
+            background: #3d2a1a;
+            border: 2px solid #d4a574;
+            color: #f0e6d2;
+            font-family: 'Georgia', 'Times New Roman', serif;
+            transition: all 0.3s ease;
+        }
+
+        .botao:hover {
+            background: #5c3d24;
+            border-color: #ffd700;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .botao.ativo {
+            background: #8b6914;
+            border-color: #ffd700;
+            color: #fff8e7;
+            box-shadow: 0 0 20px rgba(212, 165, 116, 0.5);
+        }
+
+        .aba-conteudo {
+            background: rgba(44, 24, 16, 0.95);
+            border-left: 4px solid #d4a574;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        .aba-conteudo-titulo-principal {
+            color: #ffd700;
+            font-family: 'Georgia', 'Times New Roman', serif;
+            font-size: 1.8rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .aba-conteudo-titulo-secundario {
+            color: #d4a574;
+            font-style: italic;
+        }
+
+        .contador-digito {
+            background: #2c1810;
+            border: 1px solid #d4a574;
+            border-radius: 8px;
+            padding: 15px;
+        }
+
+        .contador-digito-numero {
+            color: #ffd700;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .contador-digito-texto {
+            color: #d4a574;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        footer {
+            background: #1a0f0a;
+            border-top: 3px solid #d4a574;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        footer a {
+            color: #d4a574;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        footer a:hover {
+            color: #ffd700;
+            transform: translateY(-3px);
+        }
+
+        footer p {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            margin-top: 5px;
+        }
+
+        footer img {
+            filter: sepia(100%);
+            transition: all 0.3s ease;
+        }
+
+        footer a:hover img {
+            filter: sepia(0%) brightness(1.2);
+        }
+    </style>
 </head>
 
 <body>
     <section class="conteudo-principal">
-        <h2 class="titulo-principal"> <span>Rafaela</span></h2>
+        <h2 class="titulo-principal"> <span>História Viva</span></h2>
         <div class="conteudo">
             <div class="botoes">
-                <button class="botao ativo">Formatação</button>
-                <button class="botao">Acelaração do sistema</button>
-                <button class="botao">Criação de pendrive bootavel</button>
-                <button class="botao">Atualização de sistema</button>
+                <button class="botao ativo">Era Medieval</button>
+                <button class="botao">Renascimento</button>
+                <button class="botao">Era Moderna</button>
+                <button class="botao">Revoluções</button>
             </div>
             <div class="abas-textos">
                 <div class="aba-conteudo ativo">
-                    <h3 class="aba-conteudo-titulo-principal">montagens e desmontagens de pc</h3>
-                    <h4 class="aba-conteudo-titulo-secundario">mão de obra especializada</h4>
+                    <h3 class="aba-conteudo-titulo-principal">A Era Medieval</h3>
+                    <h4 class="aba-conteudo-titulo-secundario">Castelos, Cavaleiros e Feudalismo</h4>
                     <div class="contador">
                         <div class="contador-digito">
                             <p class="contador-digito-numero" id="dias0"></p>
@@ -43,8 +156,8 @@
                     </div>
                 </div>
                 <div class="aba-conteudo">
-                    <h3 class="aba-conteudo-titulo-principal">upgrade de hd por ssd</h3>
-                    <h4 class="aba-conteudo-titulo-secundario">Ativação via kms do windows</h4>
+                    <h3 class="aba-conteudo-titulo-principal">O Renascimento</h3>
+                    <h4 class="aba-conteudo-titulo-secundario">Arte, Ciência e Humanismo</h4>
                     <div class="contador">
                         <div class="contador-digito">
                             <p class="contador-digito-numero" id="dias1"></p>
@@ -65,8 +178,8 @@
                     </div>
                 </div>
                 <div class="aba-conteudo">
-                    <h3 class="aba-conteudo-titulo-principal">instalação dos pacotes da microsoft</h3>
-                    <h4 class="aba-conteudo-titulo-secundario">Ativação dos pacotes da microsoft via kms</h4>
+                    <h3 class="aba-conteudo-titulo-principal">Era Moderna</h3>
+                    <h4 class="aba-conteudo-titulo-secundario">Descobrimentos e Iluminismo</h4>
                     <div class="contador">
                         <div class="contador-digito">
                             <p class="contador-digito-numero" id="dias2"></p>
@@ -87,8 +200,8 @@
                     </div>
                 </div>
                 <div class="aba-conteudo">
-                    <h3 class="aba-conteudo-titulo-principal">Atualização de bios</h3>
-                    <h4 class="aba-conteudo-titulo-secundario">melhorias no sistema operacional</h4>
+                    <h3 class="aba-conteudo-titulo-principal">Era das Revoluções</h3>
+                    <h4 class="aba-conteudo-titulo-secundario">Indústria, Direitos e Tecnologia</h4>
                     <div class="contador">
                         <div class="contador-digito">
                             <p class="contador-digito-numero" id="dias3"></p>
@@ -111,24 +224,112 @@
             </div>
         </div>
     </section>
-    <script src="main.js"></script>
-    <br> 
-</body>
-     <footer button class="btn"</button>
-           
+
+    <footer>
         <a href="https://github.com/Rafaela-alves" target="_blank" rel="noopener noreferrer">
-            <img src="github.png"></img>
-            <p>Github</p>
+            <img src="github.png" alt="GitHub">
+            <p>GitHub</p>
+        </a>
         <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">
-            <img src="youtube.png"></img>
-            <p>Youtube</p>
-            <a href="https://api.whatsapp.com/send?phone=5543996247466" target="_blank" rel="noopener noreferrer">
-                <img src="Whats App.png"></img>
-                <p>Whats App</p>
-            <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">
-                <img src="ia.png"></img>
-                <p>Chat GPT</p>
-            </a>
+            <img src="youtube.png" alt="YouTube">
+            <p>YouTube</p>
+        </a>
+        <a href="https://api.whatsapp.com/send?phone=5543996247466" target="_blank" rel="noopener noreferrer">
+            <img src="Whats App.png" alt="WhatsApp">
+            <p>WhatsApp</p>
+        </a>
+        <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">
+            <img src="ia.png" alt="ChatGPT">
+            <p>Chat GPT</p>
         </a>
     </footer>
+
+    <script>
+        // Script mantido igual ao original, apenas com as datas históricas
+        const diasElementos = {
+            0: document.getElementById('dias0'),
+            1: document.getElementById('dias1'),
+            2: document.getElementById('dias2'),
+            3: document.getElementById('dias3')
+        };
+        
+        const horasElementos = {
+            0: document.getElementById('horas0'),
+            1: document.getElementById('horas1'),
+            2: document.getElementById('horas2'),
+            3: document.getElementById('horas3')
+        };
+        
+        const minutosElementos = {
+            0: document.getElementById('min0'),
+            1: document.getElementById('min1'),
+            2: document.getElementById('min2'),
+            3: document.getElementById('min3')
+        };
+        
+        const segundosElementos = {
+            0: document.getElementById('seg0'),
+            1: document.getElementById('seg1'),
+            2: document.getElementById('seg2'),
+            3: document.getElementById('seg3')
+        };
+
+        // Datas históricas para cada contador
+        const datasHistoricas = [
+            new Date(476, 8, 4),  // Queda do Império Romano do Ocidente
+            new Date(1453, 4, 29), // Queda de Constantinopla
+            new Date(1789, 6, 14), // Queda da Bastilha
+            new Date(1914, 6, 28)  // Início da Primeira Guerra Mundial
+        ];
+
+        function atualizarContador(index, dataAlvo) {
+            const agora = new Date();
+            const diferenca = dataAlvo - agora;
+            
+            if (diferenca > 0) {
+                const dias = Math.floor(diferenca / (1000 * 60 * 60 * 24));
+                const horas = Math.floor((diferenca % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutos = Math.floor((diferenca % (1000 * 60 * 60)) / (1000 * 60));
+                const segundos = Math.floor((diferenca % (1000 * 60)) / 1000);
+                
+                if (diasElementos[index]) diasElementos[index].textContent = dias;
+                if (horasElementos[index]) horasElementos[index].textContent = horas;
+                if (minutosElementos[index]) minutosElementos[index].textContent = minutos;
+                if (segundosElementos[index]) segundosElementos[index].textContent = segundos;
+            } else {
+                if (diasElementos[index]) diasElementos[index].textContent = "0";
+                if (horasElementos[index]) horasElementos[index].textContent = "0";
+                if (minutosElementos[index]) minutosElementos[index].textContent = "0";
+                if (segundosElementos[index]) segundosElementos[index].textContent = "0";
+            }
+        }
+
+        function atualizarTodosContadores() {
+            for (let i = 0; i < datasHistoricas.length; i++) {
+                atualizarContador(i, datasHistoricas[i]);
+            }
+        }
+
+        // Executar atualização a cada segundo
+        atualizarTodosContadores();
+        setInterval(atualizarTodosContadores, 1000);
+
+        // Código para as abas (mantido do original)
+        const botoes = document.querySelectorAll('.botao');
+        const abas = document.querySelectorAll('.aba-conteudo');
+
+        botoes.forEach((botao, index) => {
+            botao.addEventListener('click', () => {
+                // Remove active class from all buttons and tabs
+                botoes.forEach(btn => btn.classList.remove('ativo'));
+                abas.forEach(aba => aba.classList.remove('ativo'));
+                
+                // Add active class to clicked button and corresponding tab
+                botao.classList.add('ativo');
+                abas[index].classList.add('ativo');
+            });
+        });
+    </script>
+</body>
+
 </html>
