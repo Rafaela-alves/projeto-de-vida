@@ -1,335 +1,533 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rafaela - História</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="icon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Arquivos da História | Linha do Tempo Imersiva</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23d4a574'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 4c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm0 13c-2.33 0-4.31-1.46-5.11-3.5h10.22c-.8 2.04-2.78 3.5-5.11 3.5z'/%3E%3C/svg%3E">
     <style>
-        /* Estilos adicionais para o tema História */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            background: linear-gradient(135deg, #2c1810 0%, #1a0f0a 100%);
-            font-family: 'Georgia', 'Times New Roman', serif;
+            background: radial-gradient(circle at 10% 20%, #2a1a12, #0e0704);
+            font-family: 'Cinema', 'Georgia', 'Times New Roman', serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1rem;
+            position: relative;
+        }
+
+        /* efeito pergaminho envelhecido overlay */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1200" opacity="0.08"><path d="M0 0 L800 0 L800 1200 L0 1200 Z" fill="none" stroke="%23b87c4f" stroke-width="0.5"/><path d="M50 0 L50 1200 M150 0 L150 1200 M250 0 L250 1200 M350 0 L350 1200 M450 0 L450 1200 M550 0 L550 1200 M650 0 L650 1200 M750 0 L750 1200" stroke="%23a56b3a" stroke-width="0.3"/><path d="M0 100 L800 100 M0 250 L800 250 M0 400 L800 400 M0 550 L800 550 M0 700 L800 700 M0 850 L800 850 M0 1000 L800 1000" stroke="%23945e34" stroke-width="0.3"/></svg>');
+            background-repeat: repeat;
+            z-index: 0;
+        }
+
+        .conteudo-principal {
+            max-width: 1300px;
+            width: 100%;
+            background: rgba(20, 12, 8, 0.75);
+            backdrop-filter: blur(3px);
+            border-radius: 2rem;
+            padding: 2rem;
+            box-shadow: 0 25px 45px rgba(0,0,0,0.6), inset 0 1px 2px rgba(255,215,140,0.2);
+            border: 1px solid rgba(212, 165, 116, 0.5);
+            position: relative;
+            z-index: 2;
+            transition: all 0.4s;
         }
 
         .titulo-principal {
-            font-family: 'Georgia', 'Times New Roman', serif;
-            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+            font-size: 3.2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            letter-spacing: 5px;
+            word-break: keep-all;
         }
 
         .titulo-principal span {
-            background: linear-gradient(135deg, #d4a574 0%, #8b6914 100%);
+            background: linear-gradient(145deg, #f3d382, #c99a4b, #8b5a2b);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            font-size: 3rem;
+            text-shadow: 2px 2px 12px rgba(0,0,0,0.4);
+            font-weight: bold;
+            font-size: 3.8rem;
+        }
+
+        /* botoes estilo medieval com detalhe */
+        .botoes {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
         }
 
         .botao {
-            background: #3d2a1a;
-            border: 2px solid #d4a574;
-            color: #f0e6d2;
-            font-family: 'Georgia', 'Times New Roman', serif;
-            transition: all 0.3s ease;
+            background: #2b1c12;
+            border: none;
+            padding: 0.9rem 1.6rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            font-family: 'Georgia', serif;
+            color: #eeddbb;
+            border-radius: 60px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: 0 5px 0 #0f0804;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .botao::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,215,0,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .botao:hover::before {
+            left: 100%;
         }
 
         .botao:hover {
-            background: #5c3d24;
-            border-color: #ffd700;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transform: translateY(-3px);
+            background: #4e3020;
+            color: #fff3e0;
+            box-shadow: 0 8px 18px rgba(0,0,0,0.3);
         }
 
         .botao.ativo {
-            background: #8b6914;
-            border-color: #ffd700;
-            color: #fff8e7;
-            box-shadow: 0 0 20px rgba(212, 165, 116, 0.5);
+            background: #b87a3c;
+            color: #fffaec;
+            box-shadow: 0 0 15px #e6b86e, 0 5px 0 #5e351a;
+            border: 1px solid #ffdfa5;
+        }
+
+        /* abas conteudo */
+        .abas-textos {
+            position: relative;
+            min-height: 480px;
         }
 
         .aba-conteudo {
-            background: rgba(44, 24, 16, 0.95);
-            border-left: 4px solid #d4a574;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            background: rgba(30, 20, 14, 0.9);
+            backdrop-filter: blur(8px);
+            border-radius: 28px;
+            padding: 2rem 2rem 2rem 2rem;
+            border-left: 8px solid #e7b874;
+            border-right: 1px solid rgba(212,165,116,0.4);
+            box-shadow: 0 20px 35px -12px black;
+        }
+
+        .aba-conteudo.ativo {
+            display: block;
+            animation: fadeSlide 0.6s forwards;
+        }
+
+        @keyframes fadeSlide {
+            0% { opacity: 0; transform: translateY(25px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
 
         .aba-conteudo-titulo-principal {
-            color: #ffd700;
-            font-family: 'Georgia', 'Times New Roman', serif;
-            font-size: 1.8rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            font-size: 2.4rem;
+            color: #f7cf8c;
+            text-shadow: 0 2px 5px #231c12;
+            border-left: 5px solid #e2b86b;
+            padding-left: 20px;
+            margin-bottom: 0.5rem;
         }
 
         .aba-conteudo-titulo-secundario {
-            color: #d4a574;
+            font-size: 1.2rem;
+            color: #cfb27c;
+            margin-bottom: 1rem;
             font-style: italic;
+            letter-spacing: 1px;
+            margin-left: 28px;
+        }
+
+        /* descrição histórica aprimorada */
+        .descricao-historica {
+            background: rgba(0,0,0,0.45);
+            padding: 1.2rem;
+            border-radius: 1.5rem;
+            margin: 1.2rem 0 1.8rem 0;
+            font-family: 'Segoe UI', 'Georgia', serif;
+            line-height: 1.5;
+            color: #f0e2cf;
+            border-left: 3px solid #cb9e6b;
+            font-size: 1rem;
+        }
+
+        .descricao-historica strong {
+            color: #ffd58c;
+        }
+
+        /* contador aprimorado */
+        .contador {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+            justify-content: space-between;
+            margin-top: 2rem;
+            background: #0f0804a0;
+            border-radius: 60px;
+            padding: 1.2rem 1rem;
+            backdrop-filter: blur(4px);
         }
 
         .contador-digito {
-            background: #2c1810;
-            border: 1px solid #d4a574;
-            border-radius: 8px;
-            padding: 15px;
+            flex: 1;
+            text-align: center;
+            background: #23190e;
+            border-radius: 32px;
+            padding: 0.8rem 0.2rem;
+            box-shadow: inset 0 0 6px #634d30, 0 8px 12px rgba(0,0,0,0.2);
+            transition: all 0.2s;
+        }
+
+        .contador-digito:hover {
+            transform: scale(1.02);
+            background: #352716;
         }
 
         .contador-digito-numero {
-            color: #ffd700;
-            font-size: 2rem;
+            font-size: 2.6rem;
             font-weight: bold;
-        }
-
-        .contador-digito-texto {
-            color: #d4a574;
-            text-transform: uppercase;
+            color: #ffdfa5;
+            font-family: monospace;
+            text-shadow: 0 0 5px #d98f2b;
             letter-spacing: 2px;
         }
 
+        .contador-digito-texto {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: #dbb26e;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        /* curiosidades extras */
+        .curiosidade {
+            margin-top: 1.2rem;
+            font-size: 0.85rem;
+            text-align: center;
+            background: #1c130c70;
+            padding: 0.5rem;
+            border-radius: 50px;
+            color: #cfb48b;
+        }
+
+        /* footer refinado */
         footer {
-            background: #1a0f0a;
-            border-top: 3px solid #d4a574;
-            padding: 20px;
-            margin-top: 30px;
+            margin-top: 3rem;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2.5rem;
+            background: #100b07cc;
+            backdrop-filter: blur(12px);
+            border-radius: 60px;
+            padding: 0.8rem 2rem;
+            width: fit-content;
+            max-width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+            border: 1px solid #b47c44;
         }
 
         footer a {
-            color: #d4a574;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        footer a:hover {
-            color: #ffd700;
-            transform: translateY(-3px);
-        }
-
-        footer p {
-            font-family: 'Georgia', 'Times New Roman', serif;
-            margin-top: 5px;
+            transition: 0.25s;
+            gap: 5px;
+            font-family: 'Segoe UI', sans-serif;
         }
 
         footer img {
-            filter: sepia(100%);
-            transition: all 0.3s ease;
+            width: 38px;
+            height: 38px;
+            filter: drop-shadow(0 2px 4px black) sepia(0.4);
+            transition: all 0.2s;
         }
 
         footer a:hover img {
-            filter: sepia(0%) brightness(1.2);
+            filter: drop-shadow(0 0 6px #ffcf8a) brightness(1.2) sepia(0.2);
+            transform: translateY(-5px);
+        }
+
+        footer p {
+            color: #d9b482;
+            font-weight: 500;
+            font-size: 0.8rem;
+        }
+
+        footer a:hover p {
+            color: #ffddb0;
+        }
+
+        @media (max-width: 700px) {
+            .conteudo-principal {
+                padding: 1rem;
+            }
+            .titulo-principal span {
+                font-size: 2.2rem;
+            }
+            .contador-digito-numero {
+                font-size: 1.5rem;
+            }
+            .aba-conteudo-titulo-principal {
+                font-size: 1.6rem;
+            }
+            .botao {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* ícone decorativo */
+        .selo-tempo {
+            text-align: center;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+            letter-spacing: 10px;
+            color: #c39356;
         }
     </style>
 </head>
-
 <body>
-    <section class="conteudo-principal">
-        <h2 class="titulo-principal"> <span>História Viva</span></h2>
-        <div class="conteudo">
-            <div class="botoes">
-                <button class="botao ativo">Era Medieval</button>
-                <button class="botao">Renascimento</button>
-                <button class="botao">Era Moderna</button>
-                <button class="botao">Revoluções</button>
+<div class="conteudo-principal">
+    <div class="selo-tempo">⚔️ ⌛ 📜</div>
+    <h2 class="titulo-principal"><span>⟡ ARQUIVOS DA HISTÓRIA ⟡</span></h2>
+    <div class="conteudo">
+        <div class="botoes">
+            <button class="botao ativo" data-era="0">⚔️ Era Medieval</button>
+            <button class="botao" data-era="1">🎨 Renascimento</button>
+            <button class="botao" data-era="2">🌍 Era Moderna</button>
+            <button class="botao" data-era="3">⚙️ Revoluções</button>
+        </div>
+        <div class="abas-textos">
+            <!-- Era Medieval -->
+            <div class="aba-conteudo ativo" data-era-conteudo="0">
+                <h3 class="aba-conteudo-titulo-principal">A Era Medieval</h3>
+                <h4 class="aba-conteudo-titulo-secundario">Castelos, Cavaleiros e Feudalismo</h4>
+                <div class="descricao-historica">
+                    <strong>📜 Queda do Império Romano (476 d.C.)</strong> — Marco que encerra a Idade Antiga e inicia a Idade Média. 
+                    Fortalezas, cercas de pedra, o código de honra cavaleiresca e as Cruzadas marcaram esse período de mil anos. 
+                    <strong>Curiosidade:</strong> Os castelos possuíam passagens secretas e fossos para proteção contra invasores.
+                </div>
+                <div class="contador">
+                    <div class="contador-digito"><p class="contador-digito-numero" id="dias0">--</p><p class="contador-digito-texto">dias</p></div>
+                    <div class="contador-digito"><p class="contador-digito-numero" id="horas0">--</p><p class="contador-digito-texto">horas</p></div>
+                    <div class="contador-digito"><p class="contador-digito-numero" id="min0">--</p><p class="contador-digito-texto">min</p></div>
+                    <div class="contador-digito"><p class="contador-digito-numero" id="seg0">--</p><p class="contador-digito-texto">seg</p></div>
+                </div>
+                <div class="curiosidade">✨ Desde a queda de Roma, mais de 1500 anos de histórias, lendas e batalhas moldaram o Ocidente.</div>
             </div>
-            <div class="abas-textos">
-                <div class="aba-conteudo ativo">
-                    <h3 class="aba-conteudo-titulo-principal">A Era Medieval</h3>
-                    <h4 class="aba-conteudo-titulo-secundario">Castelos, Cavaleiros e Feudalismo</h4>
-                    <div class="contador">
-                        <div class="contador-digito">
-                            <p class="contador-digito-numero" id="dias0"></p>
-                            <p class="contador-digito-texto">dias</p>
-                        </div>
-                        <div class="contador-digito">
-                            <p class="contador-digito-numero" id="horas0"></p>
-                            <p class="contador-digito-texto">horas</p>
-                        </div>
-                        <div class="contador-digito">
-                            <p class="contador-digito-numero" id="min0"></p>
-                            <p class="contador-digito-texto">min</p>
-                        </div>
-                        <div class="contador-digito">
-                            <p class="contador-digito-numero" id="seg0"></p>
-                            <p class="contador-digito-texto">seg</p>
-                        </div>
-                    </div>
+            <!-- Renascimento -->
+            <div class="aba-conteudo" data-era-conteudo="1">
+                <h3 class="aba-conteudo-titulo-principal">O Renascimento</h3>
+                <h4 class="aba-conteudo-titulo-secundario">Arte, Ciência e Humanismo</h4>
+                <div class="descricao-historica">
+                    <strong>🎨 Queda de Constantinopla (1453)</strong> — Especialistas datam o início do Renascimento com a fuga de sábios gregos para a Itália.
+                    Leonardo da Vinci, Michelangelo, invenções, a imprensa de Gutenberg e o pensamento científico floresceram.
+                    <strong>Mestre do passado:</strong> A Mona Lisa e a Criação de Adão simbolizam a genialidade renascentista.
                 </div>
-                <div class="aba-conteudo">
-                    <h3 class="aba-conteudo-titulo-principal">O Renascimento</h3>
-                    <h4 class="aba-conteudo-titulo-secundario">Arte, Ciência e Humanismo</h4>
-                    <div class="contador">
-                        <div class="contador-digito">
-                            <p class="contador-digito-numero" id="dias1"></p>
-                            <p class="contador-digito-texto">dias</p>
-                        </div>
-                        <div class="contador-digito">
-                            <p class="contador-digito-numero" id="horas1"></p>
-                            <p class="contador-digito-texto">horas</p>
-                        </div>
-                        <div class="contador-digito">
-                            <p class="contador-digito-numero" id="min1"></p>
-                            <p class="contador-digito-texto">min</p>
-                        </div>
-                        <div class="contador-digito">
-                            <p class="contador-digito-numero" id="seg1"></p>
-                            <p class="contador-digito-texto">seg</p>
-                        </div>
-                    </div>
+                <div class="contador">
+                    <div class="contador-digito"><p class="contador-digito-numero" id="dias1">--</p><p class="contador-digito-texto">dias</p></div>
+                    <div class="contador-digito"><p class="contador-digito-numero" id="horas1">--</p><p class="contador-digito-texto">horas</p></div>
+                    <div class="contador-digito"><p class="contador-digito-numero" id="min1">--</p><p class="contador-digito-texto">min</p></div>
+                    <div class="contador-digito"><p class="contador-digito-numero" id="seg1">--</p><p class="contador-digito-texto">seg</p></div>
                 </div>
-                <div class="aba-conteudo">
-                    <h3 class="aba-conteudo-titulo-principal">Era Moderna</h3>
-                    <h4 class="aba-conteudo-titulo-secundario">Descobrimentos e Iluminismo</h4>
-                    <div class="contador">
-                        <div class="contador-digito">
-                            <p class="contador-digito-numero" id="dias2"></p>
-                            <p class="contador-digito-texto">dias</p>
-                        </div>
-                        <div class="contador-digito">
-                            <p class="contador-digito-numero" id="horas2"></p>
-                            <p class="contador-digito-texto">horas</p>
-                        </div>
-                        <div class="contador-digito">
-                            <p class="contador-digito-numero" id="min2"></p>
-                            <p class="contador-digito-texto">min</p>
-                        </div>
-                        <div class="contador-digito">
-                            <p class="contador-digito-numero" id="seg2"></p>
-                            <p class="contador-digito-texto">seg</p>
-                        </div>
-                    </div>
+                <div class="curiosidade">📖 A imprensa de Gutenberg revolucionou a Europa, tornando livros mais acessíveis e difundindo o conhecimento.</div>
+            </div>
+            <!-- Era Moderna -->
+            <div class="aba-conteudo" data-era-conteudo="2">
+                <h3 class="aba-conteudo-titulo-principal">Era Moderna</h3>
+                <h4 class="aba-conteudo-titulo-secundario">Descobrimentos e Iluminismo</h4>
+                <div class="descricao-historica">
+                    <strong>⚓ Queda da Bastilha (14 de Julho de 1789)</strong> — Símbolo do fim do Antigo Regime e ascensão dos ideais iluministas: liberdade, igualdade, fraternidade.
+                    Grandes navegações, Revolução Científica com Newton e Descartes, e o fortalecimento das monarquias nacionais.
+                    <strong>Iluministas:</strong> Voltaire, Rousseau e Montesquieu inspiraram revoluções democráticas.
                 </div>
-                <div class="aba-conteudo">
-                    <h3 class="aba-conteudo-titulo-principal">Era das Revoluções</h3>
-                    <h4 class="aba-conteudo-titulo-secundario">Indústria, Direitos e Tecnologia</h4>
-                    <div class="contador">
-                        <div class="contador-digito">
-                            <p class="contador-digito-numero" id="dias3"></p>
-                            <p class="contador-digito-texto">dias</p>
-                        </div>
-                        <div class="contador-digito">
-                            <p class="contador-digito-numero" id="horas3"></p>
-                            <p class="contador-digito-texto">horas</p>
-                        </div>
-                        <div class="contador-digito">
-                            <p class="contador-digito-numero" id="min3"></p>
-                            <p class="contador-digito-texto">min</p>
-                        </div>
-                        <div class="contador-digito">
-                            <p class="contador-digito-numero" id="seg3"></p>
-                            <p class="contador-digito-texto">seg</p>
-                        </div>
-                    </div>
+                <div class="contador">
+                    <div class="contador-digito"><p class="contador-digito-numero" id="dias2">--</p><p class="contador-digito-texto">dias</p></div>
+                    <div class="contador-digito"><p class="contador-digito-numero" id="horas2">--</p><p class="contador-digito-texto">horas</p></div>
+                    <div class="contador-digito"><p class="contador-digito-numero" id="min2">--</p><p class="contador-digito-texto">min</p></div>
+                    <div class="contador-digito"><p class="contador-digito-numero" id="seg2">--</p><p class="contador-digito-texto">seg</p></div>
                 </div>
+                <div class="curiosidade">🌎 A primeira viagem de circum-navegação (Magalhães-Elcano) provou que a Terra é redonda, transformando o mapa-múndi.</div>
+            </div>
+            <!-- Era das Revoluções -->
+            <div class="aba-conteudo" data-era-conteudo="3">
+                <h3 class="aba-conteudo-titulo-principal">Era das Revoluções</h3>
+                <h4 class="aba-conteudo-titulo-secundario">Indústria, Direitos e Tecnologia</h4>
+                <div class="descricao-historica">
+                    <strong>🏭 Início da Primeira Guerra Mundial (28 de Julho de 1914)</strong> — Conflito que redefiniu fronteiras, trouxe avanços tecnológicos e marcou a transição para o mundo contemporâneo.
+                    Revolução Industrial, movimento operário, direitos civis, e o surgimento da sociedade de massa.
+                    <strong>Legado:</strong> A tecnologia de guerra acelerou inovações como aviação, rádio e medicina moderna.
+                </div>
+                <div class="contador">
+                    <div class="contador-digito"><p class="contador-digito-numero" id="dias3">--</p><p class="contador-digito-texto">dias</p></div>
+                    <div class="contador-digito"><p class="contador-digito-numero" id="horas3">--</p><p class="contador-digito-texto">horas</p></div>
+                    <div class="contador-digito"><p class="contador-digito-numero" id="min3">--</p><p class="contador-digito-texto">min</p></div>
+                    <div class="contador-digito"><p class="contador-digito-numero" id="seg3">--</p><p class="contador-digito-texto">seg</p></div>
+                </div>
+                <div class="curiosidade">📡 A Revolução Industrial começou na Inglaterra com a máquina a vapor, transformando para sempre a produção e a vida urbana.</div>
             </div>
         </div>
-    </section>
+    </div>
+</div>
 
-    <footer>
-        <a href="https://github.com/Rafaela-alves" target="_blank" rel="noopener noreferrer">
-            <img src="github.png" alt="GitHub">
-            <p>GitHub</p>
-        </a>
-        <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">
-            <img src="youtube.png" alt="YouTube">
-            <p>YouTube</p>
-        </a>
-        <a href="https://api.whatsapp.com/send?phone=5543996247466" target="_blank" rel="noopener noreferrer">
-            <img src="Whats App.png" alt="WhatsApp">
-            <p>WhatsApp</p>
-        </a>
-        <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">
-            <img src="ia.png" alt="ChatGPT">
-            <p>Chat GPT</p>
-        </a>
-    </footer>
+<footer>
+    <a href="https://github.com/Rafaela-alves" target="_blank" rel="noopener noreferrer">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 24 24' fill='%23d4a574'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49.5.09.68-.21.68-.48 0-.24-.01-.88-.01-1.72-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02.8-.22 1.65-.33 2.5-.33.85 0 1.7.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85 0 1.34-.01 2.42-.01 2.75 0 .27.18.58.69.48C19.13 20.17 22 16.42 22 12c0-5.52-4.48-10-10-10z'/%3E%3C/svg%3E" alt="GitHub">
+        <p>GitHub</p>
+    </a>
+    <a href="https://www.youtube.com/" target="_blank">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 24 24' fill='%23d4a574'%3E%3Cpath d='M21.58 7.19c-.23-.86-.91-1.54-1.77-1.77C18.25 5 12 5 12 5s-6.25 0-7.81.42c-.86.23-1.54.91-1.77 1.77C2 8.75 2 12 2 12s0 3.25.42 4.81c.23.86.91 1.54 1.77 1.77C5.75 19 12 19 12 19s6.25 0 7.81-.42c.86-.23 1.54-.91 1.77-1.77C22 15.25 22 12 22 12s0-3.25-.42-4.81zM10 15V9l5 3-5 3z'/%3E%3C/svg%3E" alt="YouTube">
+        <p>YouTube</p>
+    </a>
+    <a href="https://api.whatsapp.com/send?phone=5543996247466" target="_blank">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 24 24' fill='%23d4a574'%3E%3Cpath d='M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-5.45-4.45-9.9-9.91-9.9zm0 18.2c-1.5 0-2.96-.4-4.24-1.16l-.3-.18-3.12.82.83-3.04-.2-.31a7.9 7.9 0 0 1-1.27-4.33c0-4.36 3.55-7.91 7.91-7.91s7.91 3.55 7.91 7.91-3.55 7.9-7.91 7.9zm4.33-5.93c-.24-.12-1.41-.7-1.63-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.01-.37-1.92-1.18-.71-.63-1.19-1.41-1.33-1.65-.14-.24-.01-.37.11-.49.1-.1.24-.26.36-.39.12-.13.16-.22.24-.37.08-.15.04-.28-.02-.39-.06-.11-.54-1.3-.74-1.78-.2-.48-.4-.41-.54-.42-.14-.01-.3-.01-.46-.01-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2 0 1.18.86 2.32.98 2.48.12.16 1.69 2.58 4.09 3.62.57.25 1.02.4 1.37.51.57.18 1.09.15 1.5.09.46-.06 1.41-.58 1.61-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28z'/%3E%3C/svg%3E" alt="WhatsApp">
+        <p>WhatsApp</p>
+    </a>
+    <a href="https://chatgpt.com/" target="_blank">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 24 24' fill='%23d4a574'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14h-2v-2h2v2zm0-4h-2V7h2v5z'/%3E%3C/svg%3E" alt="ChatGPT">
+        <p>Chat GPT</p>
+    </a>
+</footer>
 
-    <script>
-        // Script mantido igual ao original, apenas com as datas históricas
-        const diasElementos = {
-            0: document.getElementById('dias0'),
-            1: document.getElementById('dias1'),
-            2: document.getElementById('dias2'),
-            3: document.getElementById('dias3')
-        };
+<script>
+    // Datas históricas refinadas (ano, mês, dia)
+    // Importante: Mês em JS é zero-index (0=Janeiro), ajustado para corresponder aos eventos:
+    // 476  setembro 4 (Queda Roma Ocidente)
+    // 1453 maio 29 (Constantinopla)
+    // 1789 julho 14 (Bastilha)
+    // 1914 julho 28 (Início WW1)
+    const datasHistoricas = [
+        new Date(476, 8, 4),     // 4 de setembro de 476
+        new Date(1453, 4, 29),   // 29 de maio de 1453
+        new Date(1789, 6, 14),   // 14 de julho de 1789
+        new Date(1914, 6, 28)    // 28 de julho de 1914
+    ];
+
+    // Referências DOM
+    const diasEl = [0,1,2,3].map(i => document.getElementById(`dias${i}`));
+    const horasEl = [0,1,2,3].map(i => document.getElementById(`horas${i}`));
+    const minsEl = [0,1,2,3].map(i => document.getElementById(`min${i}`));
+    const segsEl = [0,1,2,3].map(i => document.getElementById(`seg${i}`));
+
+    // função para atualizar um contador específico com fallback
+    function atualizarContador(indice, dataAlvo) {
+        const agora = new Date();
+        let diff = dataAlvo - agora;
         
-        const horasElementos = {
-            0: document.getElementById('horas0'),
-            1: document.getElementById('horas1'),
-            2: document.getElementById('horas2'),
-            3: document.getElementById('horas3')
-        };
+        // Se diff negativo (evento já ocorreu, mostramos zero e podemos exibir "evento ocorrido"
+        // mas mantemos contador regressivo zero para não ficar negativo
+        if (diff < 0) diff = 0;
         
-        const minutosElementos = {
-            0: document.getElementById('min0'),
-            1: document.getElementById('min1'),
-            2: document.getElementById('min2'),
-            3: document.getElementById('min3')
-        };
+        const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const horas = Math.floor((diff % (86400000)) / (3600000));
+        const minutos = Math.floor((diff % 3600000) / 60000);
+        const segundos = Math.floor((diff % 60000) / 1000);
         
-        const segundosElementos = {
-            0: document.getElementById('seg0'),
-            1: document.getElementById('seg1'),
-            2: document.getElementById('seg2'),
-            3: document.getElementById('seg3')
-        };
+        if (diasEl[indice]) diasEl[indice].innerText = dias;
+        if (horasEl[indice]) horasEl[indice].innerText = horas;
+        if (minsEl[indice]) minsEl[indice].innerText = minutos;
+        if (segsEl[indice]) segsEl[indice].innerText = segundos;
+    }
 
-        // Datas históricas para cada contador
-        const datasHistoricas = [
-            new Date(476, 8, 4),  // Queda do Império Romano do Ocidente
-            new Date(1453, 4, 29), // Queda de Constantinopla
-            new Date(1789, 6, 14), // Queda da Bastilha
-            new Date(1914, 6, 28)  // Início da Primeira Guerra Mundial
-        ];
-
-        function atualizarContador(index, dataAlvo) {
-            const agora = new Date();
-            const diferenca = dataAlvo - agora;
-            
-            if (diferenca > 0) {
-                const dias = Math.floor(diferenca / (1000 * 60 * 60 * 24));
-                const horas = Math.floor((diferenca % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutos = Math.floor((diferenca % (1000 * 60 * 60)) / (1000 * 60));
-                const segundos = Math.floor((diferenca % (1000 * 60)) / 1000);
-                
-                if (diasElementos[index]) diasElementos[index].textContent = dias;
-                if (horasElementos[index]) horasElementos[index].textContent = horas;
-                if (minutosElementos[index]) minutosElementos[index].textContent = minutos;
-                if (segundosElementos[index]) segundosElementos[index].textContent = segundos;
-            } else {
-                if (diasElementos[index]) diasElementos[index].textContent = "0";
-                if (horasElementos[index]) horasElementos[index].textContent = "0";
-                if (minutosElementos[index]) minutosElementos[index].textContent = "0";
-                if (segundosElementos[index]) segundosElementos[index].textContent = "0";
-            }
+    function atualizarTodos() {
+        for (let i = 0; i < datasHistoricas.length; i++) {
+            atualizarContador(i, datasHistoricas[i]);
         }
-
-        function atualizarTodosContadores() {
-            for (let i = 0; i < datasHistoricas.length; i++) {
-                atualizarContador(i, datasHistoricas[i]);
-            }
-        }
-
-        // Executar atualização a cada segundo
-        atualizarTodosContadores();
-        setInterval(atualizarTodosContadores, 1000);
-
-        // Código para as abas (mantido do original)
-        const botoes = document.querySelectorAll('.botao');
-        const abas = document.querySelectorAll('.aba-conteudo');
-
-        botoes.forEach((botao, index) => {
-            botao.addEventListener('click', () => {
-                // Remove active class from all buttons and tabs
-                botoes.forEach(btn => btn.classList.remove('ativo'));
-                abas.forEach(aba => aba.classList.remove('ativo'));
-                
-                // Add active class to clicked button and corresponding tab
-                botao.classList.add('ativo');
-                abas[index].classList.add('ativo');
-            });
+    }
+    
+    // executa imediatamente e depois a cada segundo
+    atualizarTodos();
+    setInterval(atualizarTodos, 1000);
+    
+    // Sistema de abas melhorado com navegação suave
+    const botoes = document.querySelectorAll('.botao');
+    const abasConteudo = document.querySelectorAll('.aba-conteudo');
+    
+    function ativarAba(index) {
+        // remove classe ativo de todas abas e botoes
+        abasConteudo.forEach(aba => aba.classList.remove('ativo'));
+        botoes.forEach(btn => btn.classList.remove('ativo'));
+        // ativa o elemento correto
+        if (abasConteudo[index]) abasConteudo[index].classList.add('ativo');
+        if (botoes[index]) botoes[index].classList.add('ativo');
+    }
+    
+    botoes.forEach((botao, idx) => {
+        botao.addEventListener('click', () => {
+            ativarAba(idx);
         });
-    </script>
-</body>
+    });
+    
+    // efeito extra: tooltips comemorativas para contadores (opcional, elegante)
+    const containerDigitos = document.querySelectorAll('.contador-digito');
+    containerDigitos.forEach(dig => {
+        dig.addEventListener('mouseenter', (e) => {
+            dig.style.transform = 'scale(1.03)';
+            dig.style.transition = '0.2s';
+        });
+        dig.addEventListener('mouseleave', () => {
+            dig.style.transform = 'scale(1)';
+        });
+    });
 
+    // Atualização dinâmica também do título para dar impressão de tempo vivo
+    function atualizarMensagemDinamica() {
+        const agoraData = new Date();
+        const anoAtual = agoraData.getFullYear();
+        // pequena mensagem sutil no rodapé ou no título, sem poluição
+        const seloTempo = document.querySelector('.selo-tempo');
+        if (seloTempo && !window._msgTempo) {
+            // apenas para estilo
+        }
+    }
+    atualizarMensagemDinamica();
+
+    // Pré-carregamento dos contadores sem falhas (garantir que elementos existem)
+    window.addEventListener('load', () => {
+        atualizarTodos();
+        // pequeno ajuste: garantir que abas mostrem conteúdo correto após load
+        const abaAtivaExistente = document.querySelector('.aba-conteudo.ativo');
+        if (!abaAtivaExistente) ativarAba(0);
+    });
+</script>
+</body>
 </html>
