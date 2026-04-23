@@ -23,13 +23,33 @@ const tempoObjetivo4 = new Date("2026-10-05T00:00:00"); // 5 de outubro de 2026 
 const tempos = [tempoObjetivo1, tempoObjetivo2, tempoObjetivo3, tempoObjetivo4];
 
 
-function calculaTempo(tempoObjetivo){
+function calculaHorario(tempoObjetivo) {
     let tempoAtual = new Date();
-    let tempoFinal = tempoObjetivo - tempoAtual;
-    let segundos = Math.floor(tempoFinal/1000);
-    let minutos = Math.floor(segundos/60);
-    let horas = Math.floor(minutos/60);
-    let dias = Math.floor(horas/24);
+    let tempoFinal = tempoObjetivo - tempoAtual; // diferença em milissegundos
+
+    if (tempoFinal <= 0) {
+        return "00:00:00"; // já passou o tempo
+    }
+
+    let segundosTotais = Math.floor(tempoFinal / 1000);
+
+    let segundos = segundosTotais % 60;
+    let minutosTotais = Math.floor(segundosTotais / 60);
+    let minutos = minutosTotais % 60;
+    let horasTotais = Math.floor(minutosTotais / 60);
+    let horas = horasTotais; // inclui horas que passaram dos dias
+
+    // Formata com zero à esquerda
+    let hh = String(horas).padStart(2, '0');
+    let mm = String(minutos).padStart(2, '0');
+    let ss = String(segundos).padStart(2, '0');
+
+    return `${hh}:${mm}:${ss}`;
+}
+
+// Exemplo:
+let objetivo = new Date("2026-05-01T12:00:00");
+console.log(calculaHorario(objetivo)); // ex: "250:34:12"
     
     segundos %= 60;
     minutos %= 60;
