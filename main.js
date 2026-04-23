@@ -31,7 +31,7 @@ function calculaHorario(tempoObjetivo) {
         return "00:00:00"; // já passou o tempo
     }
 
-    let segundosTotais = Math.floor(tempoFinal / 1000);
+    let segundosTotais = Math.floor(tempoFinal / 60);
 
     let segundos = segundosTotais % 60;
     let minutosTotais = Math.floor(segundosTotais / 60);
