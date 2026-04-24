@@ -24,7 +24,6 @@
             position: relative;
         }
 
-        /* efeito pergaminho envelhecido overlay */
         body::before {
             content: "";
             position: fixed;
@@ -70,7 +69,6 @@
             font-size: 3.8rem;
         }
 
-        /* botoes estilo medieval com detalhe */
         .botoes {
             display: flex;
             flex-wrap: wrap;
@@ -125,7 +123,6 @@
             border: 1px solid #ffdfa5;
         }
 
-        /* abas conteudo */
         .abas-textos {
             position: relative;
             min-height: 480px;
@@ -173,7 +170,6 @@
             margin-left: 28px;
         }
 
-        /* descrição histórica aprimorada */
         .descricao-historica {
             background: rgba(0,0,0,0.45);
             padding: 1.2rem;
@@ -190,7 +186,6 @@
             color: #ffd58c;
         }
 
-        /* contador aprimorado */
         .contador {
             display: flex;
             flex-wrap: wrap;
@@ -235,7 +230,6 @@
             font-weight: 600;
         }
 
-        /* curiosidades extras */
         .curiosidade {
             margin-top: 1.2rem;
             font-size: 0.85rem;
@@ -246,7 +240,6 @@
             color: #cfb48b;
         }
 
-        /* footer refinado */
         footer {
             margin-top: 3rem;
             display: flex;
@@ -315,7 +308,6 @@
             }
         }
 
-        /* ícone decorativo */
         .selo-tempo {
             text-align: center;
             margin-bottom: 1rem;
@@ -428,63 +420,87 @@
     </a>
 </footer>
 
-const botoes = document.querySelectorAll(".botao");
-const textos = document.querySelectorAll(".aba-conteudo");
+<script>
+    // Sistema de abas
+    const botoes = document.querySelectorAll(".botao");
+    const textos = document.querySelectorAll(".aba-conteudo");
 
-for(let i=0;i <botoes.length;i++){
-    botoes[i].onclick = function(){
-        
-        for(let j=0;j<botoes.length;j++){
-            botoes[j].classList.remove("ativo");
-            textos[j].classList.remove("ativo");
+    for(let i = 0; i < botoes.length; i++){
+        botoes[i].onclick = function(){
+            for(let j = 0; j < botoes.length; j++){
+                botoes[j].classList.remove("ativo");
+                textos[j].classList.remove("ativo");
+            }
+            botoes[i].classList.add("ativo");
+            textos[i].classList.add("ativo");
         }
-
-        botoes[i].classList.add("ativo");
-        textos[i].classList.add("ativo");
     }
-}
 
-const contadores = document.querySelectorAll(".contador");
-const tempoObjetivo1 = new Date("2026-10-05T00:00:00"); 
-const tempoObjetivo2 = new Date("2026-12-05T00:00:00"); 
-const tempoObjetivo3 = new Date("2026-12-30T00:00:00"); 
-const tempoObjetivo4 = new Date("2026-10-05T00:00:00"); 
+    // DATAS HISTÓRICAS CORRIGIDAS:
+    // Cada era mostra o tempo decorrido DESDE o evento histórico marcante
+    const tempoObjetivo0 = new Date("0476-09-04T00:00:00"); // Queda do Império Romano do Ocidente (476 d.C.)
+    const tempoObjetivo1 = new Date("1453-05-29T00:00:00"); // Queda de Constantinopla (1453)
+    const tempoObjetivo2 = new Date("1789-07-14T00:00:00"); // Queda da Bastilha (1789)
+    const tempoObjetivo3 = new Date("1914-07-28T00:00:00"); // Início da Primeira Guerra Mundial (1914)
 
-const tempos = [tempoObjetivo1, tempoObjetivo2, tempoObjetivo3, tempoObjetivo4];
+    const tempos = [tempoObjetivo0, tempoObjetivo1, tempoObjetivo2, tempoObjetivo3];
 
-
-function calculaTempo(tempoObjetivo){
-    let tempoAtual = new Date();
-    let tempoFinal = tempoObjetivo - tempoAtual;
-    let segundos = Math.floor(tempoFinal/1000);
-    let minutos = Math.floor(segundos/60);
-    let horas = Math.floor(minutos/60);
-    let dias = Math.floor(horas/24);
-    
-    segundos %= 60;
-    minutos %= 60;
-    horas %= 24;
-    if (tempoFinal > 0){
-        return [dias,horas,minutos,segundos];
-    } else {
-        return [0,0,0,0];
+    // Corrigindo o problema do ano 476 - JavaScript trata anos < 100 como 1900+
+    // Por isso, ajustamos manualmente a data da Era Medieval
+    function getDataCorreta(index) {
+        if(index === 0) {
+            // Data específica para 476 d.C. - Queda do Império Romano
+            const data = new Date();
+            data.setFullYear(476, 8, 4); // 4 de setembro de 476 (mês 8 = setembro)
+            data.setHours(0, 0, 0, 0);
+            return data;
+        }
+        return tempos[index];
     }
-}
 
-function atualizaCronometro(){
-    for (let i=0; i<contadores.length;i++){
-        document.getElementById("dias"+i).textContent = calculaTempo(tempos[i])[0];
-        document.getElementById("horas"+i).textContent = calculaTempo(tempos[i])[1];
-        document.getElementById("min"+i).textContent = calculaTempo(tempos[i])[2];
-        document.getElementById("seg"+i).textContent = calculaTempo(tempos[i])[3];
+    function calculaTempo(index){
+        let tempoAtual = new Date();
+        let tempoObjetivo = getDataCorreta(index);
+        let tempoDecorrido = tempoAtual - tempoObjetivo; // diferença positiva desde o evento
+        
+        if(tempoDecorrido < 0){
+            // Se por algum motivo a data for futura, mostra 0
+            return [0, 0, 0, 0];
+        }
+        
+        let segundosTotal = Math.floor(tempoDecorrido / 1000);
+        let minutosTotal = Math.floor(segundosTotal / 60);
+        let horasTotal = Math.floor(minutosTotal / 60);
+        let dias = Math.floor(horasTotal / 24);
+        
+        let segundos = segundosTotal % 60;
+        let minutos = minutosTotal % 60;
+        let horas = horasTotal % 24;
+        
+        return [dias, horas, minutos, segundos];
     }
-}
 
-function comecaCronometro(){
-    atualizaCronometro();
-    setInterval(atualizaCronometro, 1000);
-}
+    function atualizaCronometro(){
+        for(let i = 0; i < 4; i++){
+            const [dias, horas, minutos, segundos] = calculaTempo(i);
+            const diasElem = document.getElementById("dias"+i);
+            const horasElem = document.getElementById("horas"+i);
+            const minElem = document.getElementById("min"+i);
+            const segElem = document.getElementById("seg"+i);
+            
+            if(diasElem) diasElem.textContent = dias.toLocaleString();
+            if(horasElem) horasElem.textContent = horas;
+            if(minElem) minElem.textContent = minutos;
+            if(segElem) segElem.textContent = segundos;
+        }
+    }
 
-comecaCronometro();
+    function comecaCronometro(){
+        atualizaCronometro();
+        setInterval(atualizaCronometro, 1000);
+    }
+
+    comecaCronometro();
+</script>
 </body>
 </html>
